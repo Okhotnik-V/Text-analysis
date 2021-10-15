@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public class Main {
 
+    protected String[] args;
+
     public static void main(String[] args) {
         Checking checking = new Check();
         Counting counting = new Count();
