@@ -5,9 +5,12 @@ import com.company.textanalysis.ui.Counting;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Count extends Main implements Counting {
+
+    private static final Pattern pattern = Pattern.compile("[" + "a A e E i I o O u U y Y" + "]");
 
     @Override
     public String identify(String text) {
@@ -18,7 +21,8 @@ public class Count extends Main implements Counting {
             String replace = text.replaceAll("\\s+", "");
             char[] textToArrey = replace.toCharArray();
             for (int i = 0; i < textToArrey.length; i++) {
-                if (Pattern.matches("[" + "a A e E i I o O u U y Y" + "]", String.valueOf(textToArrey[i]))) {
+                Matcher matcher = pattern.matcher(String.valueOf(textToArrey[i]));
+                if (matcher.find()) {
                     vowelsQuantity++;
                     vowelsMap.put(vowelsQuantity, String.valueOf(textToArrey[i]));
                 } else {
